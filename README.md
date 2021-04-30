@@ -1,5 +1,5 @@
 # a-cloud-guru-aws-architect-associate
-
+This repo tracks the labs of the CloudGuru AWS Architect Associate Course.
 ## AWS CLI Commands
 
 ### Create Key Pair
