@@ -1,3 +1,4 @@
-/.envrc
-/terraform/.terraform
-/terraform/.terraform.lock.hcl
+*.envrc
+*.terraform
+*.terraform.lock.hcl
+*.terraform.lock.hcl
