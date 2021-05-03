@@ -1,5 +1,5 @@
 locals {
-  instance-userdata = <<EOF
+  instance_userdata = <<EOF
 #!/bin/bash
 yum install httpd php php-mysql -y
 cd /var/www/html
@@ -27,10 +27,18 @@ resource "aws_instance" "wordpress" {
 
   key_name = aws_key_pair.myself.key_name
 
-  user_data_base64 = "${base64encode(local.instance-userdata)}"
+  user_data_base64 = "${base64encode(local.instance_userdata)}"
 
   tags = {
     Name        = "wordpress"
     Environment = var.environment
   }
+}
+
+output "wordpress_public_dns" {
+  value = aws_instance.wordpress.public_dns
+}
+
+output "wordpress_public_ip" {
+  value = aws_instance.wordpress.public_ip
 }
