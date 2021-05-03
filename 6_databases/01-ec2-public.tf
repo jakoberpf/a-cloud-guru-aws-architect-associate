@@ -1,7 +1,7 @@
 locals {
   instance_userdata = <<EOF
 #!/bin/bash
-yum install httpd php php-mysql -y
+sudo apt install httpd php php-mysql -y
 cd /var/www/html
 wget https://wordpress.org/wordpress-5.1.1.tar.gz
 tar -xzf wordpress-5.1.1.tar.gz
@@ -16,7 +16,7 @@ EOF
 }
 
 resource "aws_instance" "wordpress" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.amazon_linux.id
   instance_type = "t2.micro"
 
   subnet_id = aws_subnet.public_subnet.0.id
