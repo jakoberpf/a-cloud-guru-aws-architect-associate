@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "web" {
-  bucket = "${var.environment}-s3-bucket-web"
+  bucket = "${var.environment}-s3-bucket-web.com"
   acl    = "public-read"
 
   website {
@@ -27,7 +27,7 @@ resource "aws_s3_bucket_policy" "web" {
              "s3:GetObject"            
           ],            
           "Resource": [
-             "arn:aws:s3:::${var.environment}-s3-bucket-web/*"            
+             "arn:aws:s3:::${aws_s3_bucket.web.id}/*"            
           ]        
       }    
     ]
