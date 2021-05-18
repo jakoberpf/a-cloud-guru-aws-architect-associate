@@ -1,3 +1,4 @@
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
 resource "aws_s3_bucket" "web" {
   bucket = "${var.environment}-s3-bucket-web.com"
   acl    = "public-read"
@@ -13,6 +14,7 @@ resource "aws_s3_bucket" "web" {
   }
 }
 
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy
 resource "aws_s3_bucket_policy" "web" {
   bucket = aws_s3_bucket.web.id
   policy = <<POLICY
@@ -43,6 +45,7 @@ locals {
   ])
 }
 
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object
 resource "aws_s3_bucket_object" "object-index" {
   bucket       = aws_s3_bucket.web.id
   key          = "index.html"
@@ -51,6 +54,7 @@ resource "aws_s3_bucket_object" "object-index" {
   etag         = filemd5("web/index.html")
 }
 
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object
 resource "aws_s3_bucket_object" "objects-web" {
   for_each = local.rel_web_files
   bucket   = aws_s3_bucket.web.id
